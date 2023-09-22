@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+
+    <style>
+      body {
+        font-family: "Lato", sans-serif;
+        background-color: #65451F;
+      }
+
+      h1{
+        color: #FFFFFF;
+        text-align: center;
+      }
+
+      h2{
+        text-align: center;
+        padding-top: 10px;
+      }
+
+      #mainDiv {
+        background-color: #EAC696;
+        border: 4px solid #ffffff;
+        width: 95%;
+        margin: auto;
+      }
+
+      #secondDiv {
+        
+        display: none;
+      }
+
+      input[type="number"] {
+        width: 80px;        
+      }
+
+      input[type="button"],
+      input[type="submit"],
+      input[type="reset"],
+      button2,
+      button {
+        background-color: #765827;
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-decoration: none;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+
+      .center {
+        margin: auto;
+        width: 90%;
+        padding: 10px;
+      }
+
+  table.totalTable {
+    border: 4px solid #ffffff;
+    background-color: #EAC696;
+    width: 75%;
+    height: 100%;
+    text-align: left;
+}
+table.totalTable td, table.totalTable th {
+  padding: 8px 4px;
+}
+table.totalTable tbody td {
+  font-size: 18px;
+  color: #000000;
+}
+table.totalTable tfoot td {
+  font-size: 14px;
+}
+table.totalTable tfoot .links {
+  text-align: right;
+}
+table.totalTable tfoot .links a{
+  display: inline-block;
+  background: #1C6EA4;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+    </style>
+
+    <title>Checkout App</title>
+  </head>
+  <body>
+    <h1>Checkout Calculator</h1>
+    <div id="mainDiv">
+      <h2>Enter Item Prices</h2>
+    <form>
+      <div class="center" style="text-align: center;">
+        <label for="item1" style="font-size: 18px;"><b>Item 1</b>:</label>
+        <input
+          type="number"
+          name="item1"
+          access="false"
+          id="item1"
+          title="Item 1 Price"
+          maxlength="6"
+          size="6"
+          style="margin-left: 10px; margin-bottom: 7px;"
+        />
+
+        <br />
+
+        <label for="item2" style="font-size: 18px"><b>Item 2</b>:</label>
+        <input
+          type="number"
+          name="item2"
+          access="false"
+          id="item2"
+          title="Item 2 Price"
+          maxlength="6"
+          size="6"
+          style="margin-left: 10px; margin-bottom: 7px;"
+        />
+
+        <br />
+
+        <label for="item3" style="font-size: 18px"><b>Item 3</b>:</label>
+        <input
+          type="number"
+          name="item3"
+          access="false"
+          id="item3"
+          title="Item 3 Price"
+          maxlength="6"
+          size="6"
+          style="margin-left: 10px; margin-bottom: 7px;"
+        />
+
+        <br />
+
+        <label for="item4" style="font-size: 18px"><b>Item 4</b>:</label>
+        <input
+          type="number"
+          name="item4"
+          access="false"
+          id="item4"
+          title="Item 4 Price"
+          maxlength="6"
+          size="6"
+          style="margin-left: 10px; margin-bottom: 7px;"
+        />
+
+        <br />
+
+        <label for="item5" style="font-size: 18px"><b>Item 5</b>:</label>
+        <input
+          type="number"
+          name="item5"
+          access="false"
+          id="item5"
+          title="Item 5 Price"
+          maxlength="6"
+          size="6"
+          style="margin-left: 10px; margin-bottom: 7px;"
+        />
+
+        <br />
+
+        <label for="item6" style="font-size: 18px"><b>Item 6</b>:</label>
+        <input
+          type="number"
+          name="item6"
+          access="false"
+          id="item6"
+          title="Item 6 Price"
+          maxlength="6"
+          size="6"
+          style="margin-left: 10px"
+        />
+
+        <div class="center">
+          <br>
+          <input type="button" name="submit" access="false" id="submit" value="Calculate">
+          </input>
+          <button type="button" name="reload" access="false" id="reload" value="Reset">
+            Reset
+          </button>
+        </div>
+        
+      </div>
+    </form>
+  </div>
+  <div id="secondDiv" class="center" style="margin-bottom: 55px;">      
+    <table class="totalTable center" style="padding-bottom: 20px;">
+      <tbody>
+      <tr>
+        <td colspan="2"><h2 class="animate__animated animate__zoomIn">Subtotal/Tax/Total</h2></td>
+      </tr>
+        
+      <tr class="animate__animated animate__zoomIn">
+      <td style="text-align: right;width: 50%">Subtotal:</td><td id="subtotalBox"></td></tr>
+      <tr class="animate__animated animate__zoomIn">
+      <td style="text-align: right;width: 50%">Tax (5.5%):</td><td id="taxBox"></td></tr>
+      <tr class="animate__animated animate__zoomIn" style="font-weight:bold" style="font-size: 24px;">
+      <td style="text-align: right;width: 50%">Total:</td><td id="totalBox"></td></tr>
+      </tbody>
+      </tr>
+      <tr>
+        
+        <td colspan="2" style="padding-top: 25px;width: 100%;text-align: center;">
+          <button2 type="reset" name="again" access="false" id="again" value="Reset">
+            Reset
+          </button2>    
+        </td>
+        
+      </tr>
+      </table>  
+  
+    </div>
+  
+  
+  </body>
+
+  <script>
+    
+    function reload() {
+      window.location.reload();
+    }
+
+    function calculateSubTotal(e) {
+      let item1 = document.getElementById("item1").value;
+      let item2 = document.getElementById("item2").value;
+      let item3 = document.getElementById("item3").value;
+      let item4 = document.getElementById("item4").value;
+      let item5 = document.getElementById("item5").value;
+      let item6 = document.getElementById("item6").value;
+
+      if(item1 === ""){
+        item1 = 0
+      }
+
+      if(item2 === ""){
+        item2 = 0
+      }
+
+      if(item3 === ""){
+        item3 = 0
+      }
+
+      if(item4 === ""){
+        item4 = 0
+      }
+
+      if(item5 === ""){
+        item5 = 0
+      }
+
+      if(item6 === ""){
+        item6 = 0
+      }
+
+      item1 = parseFloat(item1);
+      item2 = parseFloat(item2);
+      item3 = parseFloat(item3);
+      item4 = parseFloat(item4);
+      item5 = parseFloat(item5);
+      item6 = parseFloat(item6);
+
+      const subtotal = (item1 + item2 + item3 + item4 + item5 + item6)
+      
+      figureTax(subtotal)
+      
+    }
+
+    function figureTax(subtotal) {
+      let tax = (subtotal * .055).toFixed(2);
+      let grandTotal = subtotal + parseFloat(tax);
+      
+      displayTotal(subtotal, tax, grandTotal);
+    }; 
+
+      document.getElementById("submit").onclick = function(){
+      
+      document.getElementById("mainDiv").style.display = "none";
+      document.getElementById("secondDiv").style.display = "block";
+      }
+
+
+    function displayTotal(subtotal, tax, grandTotal) {
+      let subtotalBox = document.getElementById("subtotalBox");
+      let taxBox = document.getElementById("taxBox");
+      let totalBox = document.getElementById("totalBox");
+
+
+      let USDollar = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      })
+
+      subtotalBox.insertAdjacentHTML("beforeend", USDollar.format(subtotal));
+      taxBox.insertAdjacentHTML("beforeend", USDollar.format(tax))
+      totalBox.insertAdjacentHTML("beforeend", USDollar.format(grandTotal))
+
+      
+    }
+    
+
+    
+
+    
+
+    submit.addEventListener("click", calculateSubTotal);
+    document.querySelector("button").addEventListener("click", reload);
+    document.querySelector("button2").addEventListener("click", reload);
+    
+  </script>
+</html>
