@@ -203,15 +203,28 @@ table.totalTable tfoot .links a{
     <table class="totalTable center" style="padding-bottom: 20px;">
       <tbody>
       <tr>
-        <td colspan="2"><h2 class="animate__animated animate__zoomIn">Subtotal/Tax/Total</h2></td>
+        <td colspan="2"><h2 class="animate__animated animate__zoomIn">Subtotal/Tax/Total<br>& Credit Card Charge</h2></td>
       </tr>
         
       <tr class="animate__animated animate__zoomIn">
-      <td style="text-align: right;width: 50%">Subtotal:</td><td id="subtotalBox"></td></tr>
+        <td style="text-align: right;width: 50%">Subtotal:</td><td id="subtotalBox"></td>
+      </tr>
+
       <tr class="animate__animated animate__zoomIn">
-      <td style="text-align: right;width: 50%">Tax (5.5%):</td><td id="taxBox"></td></tr>
-      <tr class="animate__animated animate__zoomIn" style="font-weight:bold" style="font-size: 24px;">
-      <td style="text-align: right;width: 50%">Total:</td><td id="totalBox"></td></tr>
+        <td style="text-align: right;width: 50%">Tax (5.5%):</td><td id="taxBox"></td>
+      </tr>
+
+      <tr class="animate__animated animate__zoomIn" style="font-weight:bold;font-size: 24px;">
+        <td style="text-align: right;width: 50%">Cash Total:</td><td id="totalBox"></td>
+      </tr>
+
+      <tr class="animate__animated animate__zoomIn">
+        <td style="text-align: right;width: 50%">CC Charge (2%):</td><td id="ccChargeBox"></td>
+      </tr>
+
+      <tr class="animate__animated animate__zoomIn" style="font-weight:bold;font-size: 24px;">
+        <td style="text-align: right;width: 50%">CC Total:</td><td id="ccTotalBox"></td>
+      </tr>
       </tbody>
       </tr>
       <tr>
@@ -284,8 +297,10 @@ table.totalTable tfoot .links a{
     function figureTax(subtotal) {
       let tax = (subtotal * .055).toFixed(2);
       let grandTotal = subtotal + parseFloat(tax);
-      
-      displayTotal(subtotal, tax, grandTotal);
+      let creditCardCharge = (grandTotal * .02).toFixed(2);
+      let ccTotal = grandTotal + parseFloat(creditCardCharge);
+
+      displayTotal(subtotal, tax, grandTotal, creditCardCharge, ccTotal);
     }; 
 
       document.getElementById("submit").onclick = function(){
@@ -295,10 +310,17 @@ table.totalTable tfoot .links a{
       }
 
 
-    function displayTotal(subtotal, tax, grandTotal) {
+    function displayTotal(subtotal, tax, grandTotal, creditCardCharge, ccTotal) {
+
+      
+   
       let subtotalBox = document.getElementById("subtotalBox");
       let taxBox = document.getElementById("taxBox");
       let totalBox = document.getElementById("totalBox");
+      let ccChargeBox = document.getElementById("ccChargeBox");
+      let ccTotalBox = document.getElementById("ccTotalBox");
+
+      
 
 
       let USDollar = new Intl.NumberFormat('en-US', {
@@ -307,9 +329,10 @@ table.totalTable tfoot .links a{
       })
 
       subtotalBox.insertAdjacentHTML("beforeend", USDollar.format(subtotal));
-      taxBox.insertAdjacentHTML("beforeend", USDollar.format(tax))
-      totalBox.insertAdjacentHTML("beforeend", USDollar.format(grandTotal))
-
+      taxBox.insertAdjacentHTML("beforeend", USDollar.format(tax));
+      totalBox.insertAdjacentHTML("beforeend", USDollar.format(grandTotal));
+      ccChargeBox.insertAdjacentHTML("beforeend", USDollar.format(`${creditCardCharge}`));
+      ccTotalBox.insertAdjacentHTML("beforeend", USDollar.format(ccTotal));
       
     }
     
